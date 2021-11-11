@@ -18,6 +18,25 @@ if(isset($_GET['context']) && $_GET['context']=='cities'){
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
   <table>
     <thead>
+      <th>Name</th>
+      <th>District</th>
+      <th>Population</th>
+    </thead>
+  <?php foreach ($results as $row): ?>
+    <tr>
+      <td><?= $row['name'] ?></td>
+      <td><?= $row['district'] ?></td>
+      <td><?= $row['population'] ?></td>
+    </tr>
+  <?php endforeach; ?>
+    </thead>
+  </table>
+<?php
+}else{
+  $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%';");
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
+  <table>
+    <thead>
       <th>Country Name </th>
       <th>Continent </th>
       <th>Independence </th>
@@ -29,25 +48,6 @@ if(isset($_GET['context']) && $_GET['context']=='cities'){
       <td><?= $row['continent']; ?> </td>
       <td><?= $row['independence_year']; ?> </td>
       <td><?= $row['head_of_state']; ?> </td>
-    </tr>
-  <?php endforeach; ?>
-    </thead>
-  </table>
-<?php
-}else{
-  $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%';");
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
-  <table>
-    <thead>
-      <th>Name</th>
-      <th>District</th>
-      <th>Population</th>
-    </thead>
-  <?php foreach ($results as $row): ?>
-    <tr>
-      <td><?= $row['name'] ?></td>
-      <td><?= $row['district'] ?></td>
-      <td><?= $row['population'] ?></td>
     </tr>
   <?php endforeach; ?>
     </thead>

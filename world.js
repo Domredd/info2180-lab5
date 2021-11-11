@@ -17,7 +17,7 @@ window.onload = function (){
     });
 
     btn_cities.addEventListener("click", () => {
-        let url = 'world.php?country='+input.value+'&context=cities';
+        let url = 'world.php?country='+text.value+'&context=cities';
         xhr.open('GET',url);
         xhr.send();
     });
